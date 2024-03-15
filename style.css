@@ -1,0 +1,46 @@
+/* style.css */
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black; /* Фон всей страницы теперь черный */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#gameBoard {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+}
+
+.hexagon {
+    width: calc((100vw / 47) - 2px);
+    height: calc((100vh / 21) - 2px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-clip: padding-box; /* Фон ограничен внутренним краем границы */
+    box-sizing: border-box;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border: 1px solid transparent; /* Сделаем обводку прозрачной по умолчанию */
+    transition: border-color 0.3s; /* Плавное изменение цвета обводки */
+}
+
+.hexagon:hover {
+    border-color: white; /* Обводка становится белой при наведении */
+}
+
+.hex-row:nth-child(even) .hexagon {
+    margin-left: calc(50% * (100vw / 47) - 1px);
+}
+
+.hex-row {
+    width: auto;
+    height: calc((100vh / 21) - 2px);
+}

@@ -1,36 +1,34 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const board = document.getElementById('gameBoard');
     const colors = [
-        'white',         // Белый
-        'red',           // Ярко-красный
-        'green',         // Зеленый
-        'limegreen',     // Ярко-зеленый
+        'red',           // Красный
         'blue',          // Синий
-        'lightskyblue',  // Светло-синий
+        'green',         // Зеленый
         'yellow',        // Желтый
         'pink',          // Розовый
-        'orange'         // Оранжевый
+        'orange',        // Оранжевый
+        'limegreen',     // Ярко-зеленый
+        'lightskyblue',  // Светло-синий
+        'white'          // Белый
     ];
-
-    function getRandomColor() {
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
 
     function createHexagon() {
         const hex = document.createElement('div');
         hex.className = 'hexagon';
-        const color = getRandomColor(); 
-        hex.style.backgroundColor = color;
+        hex.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]; // Случайный цвет из массива
+        hex.style.borderColor = 'transparent'; // Изначально граница прозрачная
+
+        // Обработчик клика
         hex.addEventListener('click', () => {
-            console.log('Гексагон кликнут!');
+            hex.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]; // Случайный цвет из массива при каждом клике
         });
-        
+
+        // Обработчик наведения мыши
         hex.addEventListener('mouseover', () => {
-            hex.style.borderColor = color; // При наведении цвет обводки меняется на цвет фона
+            hex.style.borderColor = 'white'; // Изменение цвета границы при наведении
         });
         hex.addEventListener('mouseleave', () => {
-            hex.style.borderColor = 'black'; // Когда курсор мыши уходит, обводка возвращается к черному цвету
+            hex.style.borderColor = 'transparent'; // Сброс цвета границы при уходе курсора
         });
 
         return hex;
@@ -43,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function fillBoard() {
-        const rows = 21; 
-        const cols = 47; 
+        const rows = 21;
+        const cols = 47;
         for (let row = 0; row < rows; row++) {
             const hexRow = createHexRow();
             for (let col = 0; col < cols; col++) {
